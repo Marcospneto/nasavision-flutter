@@ -13,12 +13,13 @@ class NasaImageViewModel extends ChangeNotifier {
     notifyListeners();
 
     try {
-      final data = await _apiService.fetchImageOfDay(date);
+      final formattedDate = date ?? DateFormat('yyyy-MM-dd').format(DateTime.now());
 
-      String formattedDate = 'Data não disponível';
+      final data = await _apiService.fetchImageOfDay(formattedDate);
+      String teste = 'Data nao disponivel';
       if (data['date'] != null) {
         DateTime parsedDate = DateTime.parse(data['date']);
-        formattedDate = DateFormat('d/MM/yyyy').format(parsedDate);
+        teste = DateFormat('d/MM/yyyy').format(parsedDate);
       }
       nasaImage = NasaImage(
         imageUrl: data['url'], 
@@ -27,7 +28,7 @@ class NasaImageViewModel extends ChangeNotifier {
         date: formattedDate,
         );
     } catch (e) {
-      print('Erro ao carregar a imagem: $e');
+      print('Erro ao carregar a imagemm: $e');
     } finally {
       isLoading = false;
       notifyListeners();
