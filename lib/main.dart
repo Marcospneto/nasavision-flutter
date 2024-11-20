@@ -4,7 +4,12 @@ import 'package:provider/provider.dart';
 import 'view_models/nasa_image_view_model.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => NasaImageViewModel()..fetchImage(),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

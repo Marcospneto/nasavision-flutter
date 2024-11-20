@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_apinasa/views/image_details.dart';
 import 'package:provider/provider.dart';
 import '../view_models/nasa_image_view_model.dart';
-
+import '../widgets/date_picker.dart';
 class Home extends StatelessWidget {
   final String title;
   const Home({super.key, required this.title});
-
+  
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => NasaImageViewModel()..fetchImage(),
+    return SafeArea(
       child: Scaffold(
         appBar: AppBar(
           title: Text(
@@ -19,15 +18,8 @@ class Home extends StatelessWidget {
             ),
           ),
           backgroundColor: Colors.blue[900],
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.calendar_today),
-              color: Colors.white,
-              tooltip: 'Filtrar por data',
-              onPressed: () {
-                print('Botão de filtro pressionado');
-              },
-            )
+          actions: const [
+            DatePicker(),
           ],
         ),
         body: Consumer<NasaImageViewModel>(
