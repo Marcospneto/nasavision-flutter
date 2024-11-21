@@ -36,12 +36,6 @@ class ErrorModal extends StatelessWidget {
                   child: ListBody(
                     children: <Widget>[
                       Text(message),
-                      const SizedBox(height: 16),
-                      const Text(
-                        'FALHA AO CARREGAR IMAGEM REFERENTE A ESSA DATA',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 14),
-                      ),
                     ],
                   ),
                 ),

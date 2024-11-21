@@ -16,10 +16,10 @@ class NasaImageViewModel extends ChangeNotifier {
       final formattedDate = date ?? DateFormat('yyyy-MM-dd').format(DateTime.now());
 
       final data = await _apiService.fetchImageOfDay(formattedDate);
-      String teste = 'Data nao disponivel';
+      String formatDate = 'Data nao disponivel';
       if (data['date'] != null) {
         DateTime parsedDate = DateTime.parse(data['date']);
-        teste = DateFormat('d/MM/yyyy').format(parsedDate);
+        formatDate = DateFormat('d/MM/yyyy').format(parsedDate);
       }
       nasaImage = NasaImage(
         imageUrl: data['url'], 

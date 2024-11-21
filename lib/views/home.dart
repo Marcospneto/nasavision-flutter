@@ -28,6 +28,9 @@ class Home extends StatelessWidget {
           children: [
             Consumer<NasaImageViewModel>(
               builder: (context, viewModel, child) {
+                if (viewModel.nasaImage == null && !viewModel.isLoading) {
+                  viewModel.fetchImage();
+                }
                 if (viewModel.isLoading) {
                   return const Center(child: CircularProgressIndicator());
                 } else if (viewModel.nasaImage != null) {
@@ -81,7 +84,7 @@ class Home extends StatelessWidget {
                   ); 
                 } else {
                   return ErrorModal(
-                    message: 'Erro ao carregar a imagem. Por favor, tente novamente mais tarde',
+                    message: 'Não existe imagem referente a essa data. Por favor selecione outra data no calendario acima!',
                     onClose: (){},
                   );
                 }
